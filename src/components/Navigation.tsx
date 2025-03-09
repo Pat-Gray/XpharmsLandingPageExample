@@ -23,10 +23,18 @@ const Navigation = () => {
     },
     
     {
+      id: 'services',
+      label: 'Additional Services',
+      type: 'link',
+      href: '/services'
+    },
+    
+    {
       id: 'resources',
       label: 'Resources',
       items: ['Compliance Guides', 'Educational & Industry Insights', 'FAQ\'s']
     },
+    
     {
       id: 'company',
       label: 'Company',
@@ -59,41 +67,52 @@ const Navigation = () => {
         <div className="hidden md:flex items-center space-x-8">
           {menuItems.map((item) => (
             <div key={item.id} className="relative group">
-              <button
-                className="text-accent hover:text-secondary flex items-center space-x-1 focus:outline-none"
-                onClick={() => toggleDropdown(item.id)}
-                onMouseEnter={() => setActiveDropdown(item.id)}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <span>{item.label}</span>
-                <ChevronDown size={16} className={`transition-transform ${activeDropdown === item.id ? 'rotate-180' : ''}`} />
-              </button>
-              
-              <AnimatePresence>
-                {activeDropdown === item.id && (
-                  <motion.div
-                    className="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-dark ring-1 ring-black ring-opacity-5 overflow-hidden z-50"
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
+              {item.type === 'link' ? (
+                <a
+                  href={item.href}
+                  className="text-accent hover:text-secondary focus:outline-none"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <>
+                  <button
+                    className="text-accent hover:text-secondary flex items-center space-x-1 focus:outline-none"
+                    onClick={() => toggleDropdown(item.id)}
                     onMouseEnter={() => setActiveDropdown(item.id)}
                     onMouseLeave={() => setActiveDropdown(null)}
                   >
-                    <div className="py-1">
-                      {item.items.map((subItem, idx) => (
-                        <a
-                          key={idx}
-                          href="#"
-                          className="block px-4 py-2 text-sm text-accent hover:bg-secondary hover:text-white transition-colors"
-                        >
-                          {subItem}
-                        </a>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                    <span>{item.label}</span>
+                    <ChevronDown size={16} className={`transition-transform ${activeDropdown === item.id ? 'rotate-180' : ''}`} />
+                  </button>
+                  
+                  <AnimatePresence>
+                    {activeDropdown === item.id && item.items && (
+                      <motion.div
+                        className="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-dark ring-1 ring-black ring-opacity-5 overflow-hidden z-50"
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                        onMouseEnter={() => setActiveDropdown(item.id)}
+                        onMouseLeave={() => setActiveDropdown(null)}
+                      >
+                        <div className="py-1">
+                          {item.items.map((subItem, idx) => (
+                            <a
+                              key={idx}
+                              href="#"
+                              className="block px-4 py-2 text-sm text-accent hover:bg-secondary hover:text-white transition-colors"
+                            >
+                              {subItem}
+                            </a>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </>
+              )}
             </div>
           ))}
         </div>
