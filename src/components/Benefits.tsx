@@ -6,6 +6,8 @@ import {
   Award,
   Server,
   CheckCircle2,
+  Leaf,
+  ShoppingCart,
 } from 'lucide-react';
 
 const benefits = [
@@ -159,12 +161,14 @@ const Benefits = () => {
             href="/cultivator-solutions" 
             className="flex items-center gap-2 px-8 py-4 border-2 border-secondary text-secondary rounded-lg hover:bg-secondary/5 transition-colors text-lg font-medium"
           >
+            <Leaf className="w-5 h-5" />
             Cultivator Solutions
           </a>
           <a 
             href="/buyer-solutions" 
             className="flex items-center gap-2 px-8 py-4 border-2 border-secondary text-secondary rounded-lg hover:bg-secondary/5 transition-colors text-lg font-medium"
           >
+            <ShoppingCart className="w-5 h-5" />
             Buyer Solutions
           </a>
         </div>

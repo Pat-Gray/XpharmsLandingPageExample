@@ -10,9 +10,11 @@ const CTASection = () => {
      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-4xl mx-auto">
-          <div className="border border-gray-200 rounded-2xl overflow-hidden shadow-xl">
+          <div className="border border-gray-200 rounded-2xl overflow-hidden shadow-xl ">
+            <div className=' bg-[linear-gradient(rgba(59,130,246,0.2)_1px,transparent_1px),linear-gradient(to_right,rgba(59,130,246,0.2)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,)]'> 
             <div className="p-8 md:p-12">
               {/* Content */}
+          
               <div className="text-center mb-12">
                 <span className="inline-block text-secondary text-sm font-medium px-4 py-2 bg-secondary/5 rounded-full mb-4">
                   Ready to Transform Your Business?
@@ -67,14 +69,16 @@ const CTASection = () => {
                     <button
                       className={`w-full px-6 py-3 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 bg-secondary text-white hover:bg-secondary/90`}
                       aria-label={`Get Started`}
-                    >
+                      >
                       Get Started
                     </button>
                  
             </div>
           </div>
         </div>
+        </div>
       </div>
+      
     </section>
   );
 };

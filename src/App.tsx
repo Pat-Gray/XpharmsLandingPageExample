@@ -21,17 +21,17 @@ const App = () => {
 
       <div className="flex flex-col min-h-screen">
         
-       <BackgroundEffects/>
+      
 
         <Navigation />
         <main className="flex-grow">
           <Hero />
+          <BackgroundEffectsBottom>
           <HederaPartnership />
             
           <Benefits />
     
 
-          <BackgroundEffectsBottom>
           <CTASection />
           <FAQSection />
           <ContactUs />

@@ -11,12 +11,12 @@ const BackgroundEffectsBottom = ({ children }: BackgroundEffectsBottomProps) => 
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Large center-right orb - Adjust opacity by changing /20 to higher number for more visibility */}
         <div className="absolute top-1/4 right-[15%] w-[45%] aspect-square">
-          <div className="absolute inset-0 bg-gradient-to-bl from-purple-500/20 via-secondary/15 to-transparent rounded-full blur-3xl animate-float-slow" />
+          <div className="absolute inset-0 bg-gradient-to-bl from-purple-500/30 via-secondary/35 to-transparent rounded-full blur-3xl animate-float-slow" />
         </div>
 
         {/* Bottom-left orb - Adjust opacity and colors in from-{color} and via-{color} */}
         <div className="absolute bottom-[-20%] left-[-10%] w-[50%] aspect-square">
-          <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/25 via-secondary/20 to-transparent rounded-full blur-3xl animate-float-slow-reverse" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/45 via-secondary/25 to-transparent rounded-full blur-3xl animate-float-slow-reverse" />
         </div>
 
         {/* Top-right accent - Increase /10 and /15 for more visibility */}
@@ -39,7 +39,7 @@ const BackgroundEffectsBottom = ({ children }: BackgroundEffectsBottomProps) => 
         {/* Gradient overlay - Adjust opacity by changing numbers after white/ */}
         {/* For more contrast with content, increase the via-white/95 value */}
         {/* For more visible background effects, decrease these values */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-white/80 to-white/5" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-white/80 to-white/5" />
       </div>
 
       {/* Render children components */}
