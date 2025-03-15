@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-
+import BackgroundEffects from './BackgroundEffects';
 const ContactUs = () => {
   const [formState, setFormState] = useState({
     name: '',
@@ -36,77 +35,36 @@ const ContactUs = () => {
   };
 
   return (
-    <section className="relative py-24 bg-gradient-to-b from-primary to-dark overflow-hidden" id="contact">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-dark/50" />
-        <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={`particle-${i}`}
-              className="absolute rounded-full bg-secondary"
-              style={{
-                width: Math.random() * 4 + 1 + 'px',
-                height: Math.random() * 4 + 1 + 'px',
-                left: Math.random() * 100 + '%',
-                top: Math.random() * 100 + '%',
-              }}
-              animate={{
-                y: [0, Math.random() * 100 - 50],
-                opacity: [0, 0.8, 0],
-              }}
-              transition={{
-                duration: Math.random() * 10 + 10,
-                repeat: Infinity,
-                ease: "linear",
-                delay: Math.random() * 10,
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
-      <div className="container mx-auto px-6 lg:px-8 relative">
+    <section 
+      className="py-24 relative" 
+      id="contact"
+      aria-labelledby="contact-heading"
+    >
+       
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.div
-            className="inline-block mb-3"
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+        <div className="text-center mb-16">
+          <span className="inline-block text-secondary text-sm font-medium px-4 py-2 bg-secondary/5 rounded-full mb-4">
+            Get Started
+          </span>
+          <h2 
+            id="contact-heading"
+            className="text-4xl font-bold text-gray-900 mb-6"
           >
-            <span className="bg-secondary/10 text-secondary px-4 py-1 rounded-full text-sm font-medium">
-              Get Started
-            </span>
-          </motion.div>
-          <h2 className="text-4xl md:text-5xl font-bold text-accent mb-6">
-            Transform Your <span className="text-secondary">Cannabis Trade</span>
+            Transform Your Cannabis Trade
           </h2>
-          <p className="text-tertiary text-lg md:text-xl max-w-3xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Ready to revolutionize your cannabis business? Connect with our team to learn how Xpharms Xchange can streamline your operations.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-3 gap-8 items-start">
           {/* Contact Form */}
-          <motion.div
-            className="bg-dark/50 backdrop-blur-sm rounded-2xl p-8 border border-secondary/20 shadow-xl"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
+          <div className="lg:col-span-2 bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-tertiary mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                     Full Name
                   </label>
                   <input
@@ -115,13 +73,13 @@ const ContactUs = () => {
                     name="name"
                     value={formState.name}
                     onChange={handleChange}
-                    className="w-full bg-dark/50 border border-secondary/20 rounded-lg px-4 py-3 text-accent placeholder-tertiary/50 focus:outline-none focus:border-secondary transition-colors"
+                    className="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors"
                     placeholder="John Doe"
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-tertiary mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                     Email Address
                   </label>
                   <input
@@ -130,7 +88,7 @@ const ContactUs = () => {
                     name="email"
                     value={formState.email}
                     onChange={handleChange}
-                    className="w-full bg-dark/50 border border-secondary/20 rounded-lg px-4 py-3 text-accent placeholder-tertiary/50 focus:outline-none focus:border-secondary transition-colors"
+                    className="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors"
                     placeholder="john@company.com"
                     required
                   />
@@ -138,7 +96,7 @@ const ContactUs = () => {
               </div>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-tertiary mb-2">
+                  <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
                     Company Name
                   </label>
                   <input
@@ -147,13 +105,13 @@ const ContactUs = () => {
                     name="company"
                     value={formState.company}
                     onChange={handleChange}
-                    className="w-full bg-dark/50 border border-secondary/20 rounded-lg px-4 py-3 text-accent placeholder-tertiary/50 focus:outline-none focus:border-secondary transition-colors"
+                    className="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors"
                     placeholder="Your Company"
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="role" className="block text-sm font-medium text-tertiary mb-2">
+                  <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-2">
                     Your Role
                   </label>
                   <select
@@ -161,7 +119,7 @@ const ContactUs = () => {
                     name="role"
                     value={formState.role}
                     onChange={handleChange}
-                    className="w-full bg-dark/50 border border-secondary/20 rounded-lg px-4 py-3 text-accent focus:outline-none focus:border-secondary transition-colors"
+                    className="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors"
                     required
                   >
                     <option value="">Select Role</option>
@@ -174,7 +132,7 @@ const ContactUs = () => {
                 </div>
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-tertiary mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                   Message
                 </label>
                 <textarea
@@ -183,16 +141,14 @@ const ContactUs = () => {
                   value={formState.message}
                   onChange={handleChange}
                   rows={4}
-                  className="w-full bg-dark/50 border border-secondary/20 rounded-lg px-4 py-3 text-accent placeholder-tertiary/50 focus:outline-none focus:border-secondary transition-colors"
+                  className="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors"
                   placeholder="Tell us about your needs..."
                   required
                 />
               </div>
-              <motion.button
+              <button
                 type="submit"
-                className="w-full bg-secondary hover:bg-secondary/90 text-white font-medium py-3 px-6 rounded-lg transition-colors relative overflow-hidden"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                className="w-full bg-secondary hover:bg-secondary/90 text-white font-medium py-3 px-6 rounded-lg transition-colors relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
@@ -206,99 +162,58 @@ const ContactUs = () => {
                 ) : (
                   'Get Started'
                 )}
-              </motion.button>
+              </button>
             </form>
-          </motion.div>
+          </div>
 
           {/* Contact Information */}
-          <motion.div
-            className="space-y-8"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="bg-dark/50 backdrop-blur-sm rounded-2xl p-8 border border-secondary/20 shadow-xl">
-              <h3 className="text-2xl font-bold text-accent mb-6">Why Choose Xpharms Xchange?</h3>
-              <div className="space-y-4">
-                {[
-                  {
-                    icon: "🔒",
-                    title: "Enterprise Security",
-                    description: "Bank-grade encryption and Hedera consensus security"
-                  },
-                  {
-                    icon: "⚡",
-                    title: "Lightning Fast",
-                    description: "Real-time transaction processing and settlement"
-                  },
-                  {
-                    icon: "🌐",
-                    title: "Global Network",
-                    description: "Access to verified partners worldwide"
-                  },
-                  {
-                    icon: "💎",
-                    title: "Premium Support",
-                    description: "24/7 dedicated enterprise support team"
-                  }
-                ].map((feature, i) => (
-                  <motion.div
-                    key={i}
-                    className="flex items-start space-x-4"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                  >
-                    <span className="text-2xl">{feature.icon}</span>
-                    <div>
-                      <h4 className="text-accent font-medium">{feature.title}</h4>
-                      <p className="text-tertiary text-sm">{feature.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+          <div className="space-y-6">
+            {/* Email Contact Box */}
+            <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Email Us</h3>
+              <a
+                href="mailto:enterprise@xpharmsxchange.com"
+                className="flex items-center text-gray-600 hover:text-secondary transition-colors group"
+              >
+                <svg
+                  className="w-6 h-6 text-secondary mr-3 group-hover:scale-110 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                enterprise@xpharmsxchange.com
+              </a>
+              <p className="mt-2 text-sm text-gray-500">
+                We typically respond within 24 hours
+              </p>
             </div>
 
-            <div className="bg-dark/50 backdrop-blur-sm rounded-2xl p-8 border border-secondary/20 shadow-xl">
-              <h3 className="text-2xl font-bold text-accent mb-6">Contact Information</h3>
-              <div className="space-y-4">
-                {[
-                  {
-                    icon: "📍",
-                    title: "Location",
-                    info: "Toronto, Ontario, Canada"
-                  },
-                  {
-                    icon: "📞",
-                    title: "Phone",
-                    info: "+1 (555) 123-4567"
-                  },
-                  {
-                    icon: "✉️",
-                    title: "Email",
-                    info: "enterprise@xpharmsxchange.com"
-                  }
-                ].map((contact, i) => (
-                  <motion.div
-                    key={i}
-                    className="flex items-start space-x-4"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                  >
-                    <span className="text-2xl">{contact.icon}</span>
-                    <div>
-                      <h4 className="text-accent font-medium">{contact.title}</h4>
-                      <p className="text-tertiary text-sm">{contact.info}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+            {/* Phone Contact Box */}
+            <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Call Us</h3>
+              <a
+                href="tel:+1-555-123-4567"
+                className="flex items-center text-gray-600 hover:text-secondary transition-colors group"
+              >
+                <svg
+                  className="w-6 h-6 text-secondary mr-3 group-hover:scale-110 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                +1 (555) 123-4567
+              </a>
+              <p className="mt-2 text-sm text-gray-500">
+                Available Monday-Friday, 9AM-6PM EST
+              </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

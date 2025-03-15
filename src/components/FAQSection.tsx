@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import BackgroundEffects from './BackgroundEffects';
+import BackgroundEffectsBottom from './BackgroundEffectsBottom';
 
 const faqData = [
   { 
@@ -27,7 +28,7 @@ const faqData = [
   },
   { 
     question: 'How does Xpharms Xchange handle private business negotiations and details?', 
-    answer: "Private business negotiations are facilitated through secure, encrypted channels within the platform. Sensitive details, including pricing agreements and contract terms, are protected by Hedera’s blockchain encryption and are only accessible to involved parties. Smart contracts ensure that negotiation outcomes are automatically enforced, maintaining confidentiality and trust." 
+    answer: "Private business negotiations are facilitated through secure, encrypted channels within the platform. Sensitive details, including pricing agreements and contract terms, are protected by Hedera's blockchain encryption and are only accessible to involved parties. Smart contracts ensure that negotiation outcomes are automatically enforced, maintaining confidentiality and trust." 
   },
   { 
     question: 'What support is available?', 
@@ -36,134 +37,115 @@ const faqData = [
 ];
 
 const FAQSection = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openItem, setOpenItem] = useState<number | null>(null);
 
   return (
-    <section className="py-24 bg-gradient-to-b from-primary to-dark relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <svg className="w-full h-full opacity-5" viewBox="0 0 100 100" preserveAspectRatio="none">
-          {[...Array(10)].map((_, i) => (
-            <motion.path
-              key={`path-${i}`}
-              d={`M${Math.random() * 100} ${Math.random() * 100} Q${Math.random() * 100} ${Math.random() * 100} ${Math.random() * 100} ${Math.random() * 100}`}
-              stroke="#3B82F6"
-              strokeWidth="0.5"
-              fill="none"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ 
-                duration: 5 + Math.random() * 5, 
-                repeat: Infinity, 
-                repeatType: "reverse",
-                ease: "easeInOut"
-              }}
-            />
-          ))}
-        </svg>
-      </div>
-
-      <div className="container mx-auto px-6 lg:px-8 relative z-10">
-        {/* Section header */}
-        <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          <motion.div
-            className="inline-block mb-3"
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            viewport={{ once: true }}
+    <section 
+      className="py-16 sm:py-24 relative overflow-hidden"
+      aria-labelledby="faq-heading"
+    >
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="text-center mb-12">
+          <span className="inline-block text-secondary text-sm font-medium px-4 py-2 bg-secondary/5 rounded-full mb-4">
+            Support & Help
+          </span>
+          <h2 
+            id="faq-heading"
+            className="text-4xl font-bold text-gray-900 mb-4 tracking-tight"
           >
-            <span className="bg-secondary/10 text-secondary px-4 py-1 rounded-full text-sm font-medium">
-              Knowledge Base
-            </span>
-          </motion.div>
-          <h2 className="text-4xl md:text-5xl font-bold text-accent mb-6">
-            Frequently Asked <span className="text-secondary">Questions</span>
+            Frequently Asked Questions
           </h2>
-          <p className="text-tertiary text-lg md:text-xl max-w-3xl mx-auto">
-            Find answers to common questions about our blockchain-powered cannabis trading platform.
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Find answers to common questions about our blockchain supply chain solutions.
           </p>
-        </motion.div>
-
-        {/* FAQ accordion */}
-        <div className="max-w-3xl mx-auto bg-dark/50 backdrop-blur-sm rounded-xl overflow-hidden shadow-xl border border-tertiary/10">
-          {faqData.map((item, index) => (
-            <motion.div 
-              key={index}
-              className={`border-b border-tertiary/10 ${index === faqData.length - 1 ? 'border-b-0' : ''}`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true, margin: "-50px" }}
-            >
-              <button
-                className="w-full text-left py-5 px-6 flex justify-between items-center focus:outline-none"
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                aria-expanded={openIndex === index}
-                aria-controls={`faq-answer-${index}`}
-              >
-                <span className="text-lg font-medium text-accent">{item.question}</span>
-                <motion.div
-                  animate={{ rotate: openIndex === index ? 45 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="text-secondary flex-shrink-0 ml-4"
-                >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 5V19M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </motion.div>
-              </button>
-              
-              <AnimatePresence>
-                {openIndex === index && (
-                  <motion.div
-                    id={`faq-answer-${index}`}
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    <div className="px-6 pb-5 text-tertiary">
-                      <div className="bg-secondary/5 p-4 rounded-lg">
-                        {item.answer}
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
         </div>
 
-        {/* Additional help */}
-        <motion.div 
-          className="text-center mt-12"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          viewport={{ once: true }}
+        <div 
+          className="max-w-3xl mx-auto relative"
+          role="region"
+          aria-label="FAQ Accordion"
         >
-          <p className="text-tertiary mb-4">
-            Can't find what you're looking for?
-          </p>
-          <motion.button
-            className="px-6 py-3 bg-secondary text-white rounded-md shadow-lg font-medium"
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: "0 0 20px rgba(59, 130, 246, 0.5)"
-            }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          {/* Container with border and background */}
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200 shadow-lg overflow-hidden">
+            {faqData.map((faq, index) => (
+              <div 
+                key={index}
+                className={`border-b border-gray-100 last:border-b-0 overflow-hidden transition-colors ${
+                  openItem === index ? 'bg-secondary/5' : 'hover:bg-gray-50/50'
+                }`}
+              >
+                <button
+                  className="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-white"
+                  onClick={() => setOpenItem(openItem === index ? null : index)}
+                  aria-expanded={openItem === index}
+                  aria-controls={`faq-answer-${index}`}
+                >
+                  <span className="text-lg font-semibold text-gray-900 pr-8">
+                    {faq.question}
+                  </span>
+                  <div className={`w-6 h-6 rounded-full border-2 border-secondary flex items-center justify-center transition-transform ${
+                    openItem === index ? 'rotate-180 bg-secondary' : ''
+                  }`}>
+                    <svg
+                      className={`h-4 w-4 transition-colors ${
+                        openItem === index ? 'text-white' : 'text-secondary'
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </div>
+                </button>
+                <div
+                  id={`faq-answer-${index}`}
+                  className={`transition-all duration-200 ease-in-out ${
+                    openItem === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                  } overflow-hidden`}
+                  role="region"
+                  aria-labelledby={`faq-question-${index}`}
+                >
+                  <div className="px-6 pb-4">
+                    <p className="text-gray-600 leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-12 text-center">
+          <a
+            href="/support"
+            className="inline-flex items-center gap-2 text-secondary hover:text-secondary/90 font-medium bg-secondary/5 px-6 py-3 rounded-lg hover:bg-secondary/10 transition-colors"
+            aria-label="Visit our support center for more answers"
           >
-            Contact Support
-          </motion.button>
-        </motion.div>
+            Visit our Support Center
+            <svg 
+              className="w-4 h-4" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
   );

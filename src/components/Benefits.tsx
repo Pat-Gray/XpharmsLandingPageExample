@@ -1,198 +1,172 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import { 
   Network, 
-  ShieldCheck, 
-  Globe2, 
   FlaskConical, 
   Wallet, 
-  BoxesIcon
+  Award,
+  Server,
+  CheckCircle2,
 } from 'lucide-react';
 
 const benefits = [
   {
     icon: Network,
     title: 'Smarter, Direct Connections',
-    subtitle: 'Bypass Middlemen and Connect Directly with Verified Cultivators and Buyers',
+    subtitle: 'Bypass Middlemen and Connect Directly',
     description: 'Xpharms Xchange eliminates unnecessary intermediaries, reducing costs and accelerating deals. Our strict KYC/AML verification and automated compliance checks ensure only licensed participants trade, creating a secure and efficient marketplace.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Trustworthy & Transparent Transactions',
-    subtitle: 'Smart Contracts Ensure Secure, Fraud-Proof Payments with Real-Time Tracking',
-    description: 'Hedera-powered smart contracts automatically process milestone-based payments, ensuring tamper-proof records. Every transaction is immutable, reducing fraud risks and providing real-time visibility for buyers and sellers.',
-  },
-  {
-    icon: Globe2,
-    title: 'Hassle-Free Global Compliance',
-    subtitle: 'Automated Regulatory Checks Simplify Trade and Reduce Legal Costs',
-    description: 'Xpharms Xchange is designed to meet stringent global standards, including GMP, EU GMP, and Class 1 Narcotics regulations. Automated compliance verification streamlines the licensing and export/import process, saving time and minimizing legal fees.',
+    graphic: (
+      <div className="relative w-full h-full">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="grid grid-cols-2 gap-4 w-full max-w-xs">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="bg-secondary/5 rounded-lg p-4 flex items-center justify-center">
+                <Network className="w-6 h-6 text-secondary/40" />
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent" />
+      </div>
+    )
   },
   {
     icon: FlaskConical,
     title: 'Standardized Lab Testing',
     subtitle: 'Consistent, Highest-Standard COAs Guarantee Product Quality',
-    description: 'By partnering with ISO/IEC 17025-accredited labs, Xpharms Xchange guarantees every batch has a blockchain-verified Certificate of Analysis (COA). This eliminates discrepancies, enhances buyer confidence, and ensures consistent product quality.',
+    description: 'Funds are securely held in a smart contract controlled escrow account and released automatically based on agreed milestones. This protects both buyers and sellers, reducing risks, ensuring timely payments, and enhancing trust in every transaction.',
+    graphic: (
+      <div className="relative w-full h-full">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="grid grid-cols-3 gap-2 w-full max-w-xs">
+            {[...Array(9)].map((_, i) => (
+              <div key={i} className="aspect-square bg-secondary/5 rounded-lg flex items-center justify-center">
+                <FlaskConical className="w-6 h-6 text-secondary/30" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
   },
   {
     icon: Wallet,
-    title: 'Seamless & Cost-Effective Payments',
-    subtitle: 'Flexible Fiat, Crypto, and Stablecoin Transactions Reduce Costs',
-    description: 'Choose between fiat, cryptocurrencies, or stablecoins like USDT, with smart contracts handling instant payments. This cuts transaction fees by 15% and reduces processing time by 50%, making global trade smoother and more efficient.',
+    title: 'Seamless & Cost-Efficient Payments',
+    subtitle: 'Leverage stablecoin payments',
+    description: 'Save thousands in international transfers fees or get paid instantly.',
+    graphic: (
+      <div className="relative w-full h-full">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="space-y-4">
+            {['$', '₿', '⬡'].map((symbol, i) => (
+              <div key={i} className="bg-secondary/5 rounded-full p-4 text-2xl text-secondary/40 text-center">
+                {symbol}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
   },
   {
-    icon: BoxesIcon,
-    title: 'Inventory & Supply Chain Visibility',
-    subtitle: 'Real-Time Tracking of Cannabis Shipments from Seed to Sale',
-    description: 'Advanced blockchain tracking ensures end-to-end visibility of every shipment. Users can verify product origin, lab results, and delivery status in real time, preventing delays and supply chain fraud.',
+    icon: Award,
+    title: 'Real World Tokenization',
+    subtitle: 'Immutable Record and Tracking',
+    description: 'Xpharms Xchange transforms physical cannabis batches into digital tokens, ensuring immutable records, seamless traceability, and automated smart contract execution. This eliminates manual tracking inefficiencies & enhances supply chain transparency.',
+    graphic: (
+      <div className="relative w-full h-full">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="grid grid-cols-2 gap-4 w-full max-w-xs">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="bg-secondary/5 rounded-lg p-4 flex items-center justify-center">
+                <Award className="w-6 h-6 text-secondary/40" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  },
+  {
+    icon: Server,
+    title: 'Reduce Negotiation Times',
+    subtitle: 'Streamlined Legal Processes',
+    description: 'The platform is custom built to facilitate cannabis trade and streamline the process. The platform takes a unique user-friendly approach to help cultivators and buyers reach negotiation quickly and buy securely.',
+    graphic: (
+      <div className="relative w-full h-full">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="grid grid-cols-2 gap-4 w-full max-w-xs">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="bg-secondary/5 rounded-lg p-4 flex items-center justify-center">
+                <Server className="w-6 h-6 text-secondary/40" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
   }
 ];
 
 const Benefits = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const benefitVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const graphicVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  };
-
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div 
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15L30 0z' stroke-width='1' stroke='%232E8B57' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E")`,
-          backgroundSize: '60px 60px',
-        }}
-      />
-
+    <section className="py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={containerVariants}
-          className="text-center mb-16"
-        >
-          <motion.h2 
-            variants={benefitVariants}
-            className="text-4xl font-bold text-brand-gray mb-4"
-          >
+        <div className="text-center mb-16">
+          <span className="inline-block text-secondary text-sm font-medium px-4 py-2 bg-secondary/5 rounded-full mb-4">
+            Platform Benefits
+          </span>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Why Choose Xpharms Exchange?
-          </motion.h2>
-          <motion.p 
-            variants={benefitVariants}
-            className="text-xl text-gray-600 max-w-2xl mx-auto"
-          >
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Our platform combines enterprise-grade security with innovative blockchain 
             technology to revolutionize cannabis trade.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         <div className="space-y-24">
-          {benefits.map((benefit, index) => (
-            <motion.div
+          {benefits.map((benefit) => (
+            <div
               key={benefit.title}
               className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
             >
               {/* Content Section (70%) */}
-              <motion.div 
-                className="w-full lg:w-[70%] space-y-6"
-                variants={benefitVariants}
-              >
-                <div className="flex items-center gap-4 text-brand-teal">
+              <div className="w-full lg:w-[70%] space-y-6">
+                <div className="flex items-center gap-4 text-secondary">
                   <benefit.icon className="w-8 h-8" />
-                  <h3 className="text-xl font-medium">{benefit.title}</h3>
+                  <h3 className="text-xl font-medium text-gray-900">{benefit.title}</h3>
                 </div>
-                <h4 className="text-3xl font-bold text-brand-gray">
+                <h4 className="text-3xl font-bold text-gray-900">
                   {benefit.subtitle}
                 </h4>
                 <p className="text-lg text-gray-600 leading-relaxed">
                   {benefit.description}
                 </p>
-              </motion.div>
+              </div>
 
               {/* Graphic Section (30%) */}
-              <motion.div 
-                className="w-full lg:w-[30%] aspect-square relative"
-                variants={graphicVariants}
-              >
-                <div className="absolute inset-0 bg-brand-teal/5 rounded-2xl overflow-hidden">
-                  {/* Dynamic graphic container */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-full h-full relative">
-                      {/* Benefit-specific graphics */}
-                      <motion.div
-                        className="absolute inset-0 flex items-center justify-center"
-                        animate={{
-                          scale: [1, 1.05, 1],
-                          opacity: [0.8, 1, 0.8],
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                      >
-                        <benefit.icon className="w-24 h-24 text-brand-teal/20" />
-                      </motion.div>
-                      
-                      {/* Animated background elements */}
-                      <div className="absolute inset-0">
-                        <div className="absolute inset-0 bg-gradient-to-br from-brand-teal/10 to-transparent" />
-                        <div 
-                          className="absolute inset-0"
-                          style={{
-                            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15L30 0z' stroke-width='1' stroke='%232E8B57' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E")`,
-                            backgroundSize: '30px 30px',
-                            opacity: 0.1
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
+              <div className="w-full lg:w-[30%] aspect-square bg-white rounded-2xl shadow-sm border border-gray-100">
+                {benefit.graphic}
+              </div>
+            </div>
           ))}
+        </div>
+
+        <p className='pt-10 text-center text-lg text-gray-600 leading-relaxed'>Find Out More About Our Solutions</p>
+        {/* Solution Buttons */}
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6">
+          <a 
+            href="/cultivator-solutions" 
+            className="flex items-center gap-2 px-8 py-4 border-2 border-secondary text-secondary rounded-lg hover:bg-secondary/5 transition-colors text-lg font-medium"
+          >
+            Cultivator Solutions
+          </a>
+          <a 
+            href="/buyer-solutions" 
+            className="flex items-center gap-2 px-8 py-4 border-2 border-secondary text-secondary rounded-lg hover:bg-secondary/5 transition-colors text-lg font-medium"
+          >
+            Buyer Solutions
+          </a>
         </div>
       </div>
     </section>

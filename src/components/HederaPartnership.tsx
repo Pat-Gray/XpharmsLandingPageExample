@@ -1,49 +1,88 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { Shield, Zap, Coins } from 'lucide-react';
 
 const HederaPartnership = () => {
+  const features = [
+    {
+      title: 'Enterprise Security',
+      description: 'Bank-grade security with the highest level of compliance standards.',
+      icon: Shield
+    },
+    {
+      title: 'Lightning Fast',
+      description: 'Process thousands of transactions per second with instant finality.',
+      icon: Zap
+    },
+    {
+      title: 'Cost Effective',
+      description: 'Predictable and low transaction fees for enterprise operations.',
+      icon: Coins
+    }
+  ];
+
   return (
-    <section className="relative py-16 bg-white">
-      <div className="container mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Text Content */}
-          <div className="order-2 lg:order-1">
-            <div className="mb-6">
-              <span className="text-secondary font-semibold text-sm uppercase tracking-wider">
-                Powered by Hedera
-              </span>
-            </div>
+    <section 
+      className="relative py-24 overflow-hidden"
+      aria-labelledby="partnership-heading"
+    >
+      
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Content */}
+          <div className="relative">
+          
             
-            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed mb-8">Xpharms Xchange leverages Hedera's distributed ledger technology to revolutionize cannabis commerce. By tokenizing trade, streamlining negotiations, implementing smart contracts, and simplifying compliance, we enhance liquidity, accelerate transactions, and drive a new era of seamless and verifiable global cannabis trade
-             
+            <h2 
+              id="partnership-heading"
+              className="text-4xl font-bold text-gray-900 mb-6 tracking-tight"
+            >
+              Powered by{' '}
+              <span className="text-secondary">
+                Hedera
+              </span>
+            </h2>
+
+            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+              Xpharms Xchange leverages Hedera's distributed ledger technology to revolutionize cannabis commerce. 
+              By tokenizing trade, streamlining negotiations, implementing smart contracts, and simplifying compliance, 
+              we enhance liquidity, accelerate transactions, and drive a new era of seamless and verifiable global cannabis trade.
             </p>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-              {[
-                { value: '0.5s', label: 'Transaction Finality' },
-                { value: '100K+', label: 'TPS' },
-                { value: '$0.0001', label: 'Avg. Transaction Fee' },
-                { value: '100%', label: 'Carbon Neutral' }
-              ].map((stat, i) => (
-                <div key={i} className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
-                  <div className="text-secondary font-bold text-2xl mb-1">{stat.value}</div>
-                  <div className="text-gray-600 text-sm">{stat.label}</div>
+            <div className="grid sm:grid-cols-3 gap-8" >
+              {features.map((feature, index) => (
+                <div 
+                  key={index}
+                  className="relative group"
+                >
+                  <div className="absolute inset-0  rounded-2xl " />
+                  <div className="relative bg-white p-6 rounded-xl border border-gray-100 h-60 w-48">
+                    <feature.icon className="w-8 h-8 text-secondary mb-4" />
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      {feature.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
+
+            
           </div>
 
-          {/* Hedera Logo */}
-          <div className="order-1 lg:order-2 flex justify-center items-center">
-            <div className="relative w-full max-w-md">
-              {/* Logo container */}
-              <div className="relative bg-white rounded-2xl p-8 ">
-                <img
-                  src="/13-BuiltOnHedera-Lockup-Dark.jpg"
-                  alt="Built on Hedera"
-                  className="w-full h-auto"
-                />
-              </div>
+          {/* Image */}
+          <div className="relative">
+            <div className="" />
+            <div className="relative">
+              <img
+                src="/13-BuiltOnHedera-Lockup-Dark.svg"
+                alt="Built on Hedera"
+                className="w-full h-auto"
+              />
+              
+              
             </div>
           </div>
         </div>

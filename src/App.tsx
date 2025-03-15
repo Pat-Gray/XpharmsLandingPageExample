@@ -1,42 +1,47 @@
 import React, { useState } from 'react';
-import Navigation from './components/Navigation';
+
 import Hero from './components/Hero';
+import Navigation from './components/Navigation';
 import HederaPartnership from './components/HederaPartnership';
-import Partners from './components/Partners';
-import Benefits from './components/Benefits';
-import BenefitsSection from './components/BenefitsSection';
-import FAQSection from './components/FAQSection';
+
 import CTASection from './components/CTASection';
 import ContactUs from './components/ContactUs';
 import Footer from './components/Footer';
+import Benefits from './components/Benefits';
+import FAQSection from './components/FAQSection';
+import BackgroundEffects from './components/BackgroundEffects';
+import BackgroundEffectsBottom from './components/BackgroundEffectsBottom';
 
-function App() {
-  const [motionDisabled, setMotionDisabled] = useState(false);
+
+const App = () => {
+  // You can control the background intensity here
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Accessibility toggle */}
-      {/* <button
-        onClick={() => setMotionDisabled(!motionDisabled)}
-        className="fixed top-4 right-4 z-50 px-4 py-2 bg-brand-teal text-white rounded-md text-sm font-medium hover:bg-brand-teal/90 transition-colors"
-        aria-label="Toggle motion effects"
-      >
-        {motionDisabled ? 'Enable Motion' : 'Disable Motion'}
-      </button> */}
 
-      <Navigation />
-      <main className={motionDisabled ? 'motion-safe:animate-none' : ''}>
-        <Hero />
-        <HederaPartnership />
-        {/* <Partners /> */}
-        <BenefitsSection />
-        <CTASection />
-        <FAQSection />
-        <ContactUs />
+
+      <div className="flex flex-col min-h-screen">
+        
+       <BackgroundEffects/>
+
+        <Navigation />
+        <main className="flex-grow">
+          <Hero />
+          <HederaPartnership />
+            
+          <Benefits />
+    
+
+          <BackgroundEffectsBottom>
+          <CTASection />
+          <FAQSection />
+          <ContactUs />
+          </BackgroundEffectsBottom>
+        </main>
         <Footer />
-      </main>
-    </div>
+        
+      </div>
+  
   );
-}
+};
 
 export default App;
