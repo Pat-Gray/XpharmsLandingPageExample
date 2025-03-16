@@ -1,20 +1,96 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const CTASection = () => {
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  // Scroll-based grid opacity for background
+  useEffect(() => {
+    const handleScroll = () => {
+      if (gridRef.current) {
+        const rect = gridRef.current.getBoundingClientRect();
+        const scrollPosition = window.scrollY + window.innerHeight;
+        const sectionTop = rect.top + window.scrollY;
+        const sectionBottom = sectionTop + rect.height;
+
+        const maxOpacity = 0.2;
+        const minOpacity = 0.05;
+        const scrollRange = sectionBottom - sectionTop;
+        const scrollProgress = Math.min(
+          Math.max((scrollPosition - sectionTop) / scrollRange, 0),
+          1
+        );
+        const opacity = maxOpacity - (maxOpacity - minOpacity) * scrollProgress;
+
+        gridRef.current.style.opacity = opacity.toString();
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Set initial opacity
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <section 
       className="py-24 relative overflow-hidden"
       aria-labelledby="cta-heading"
     >
-      {/* Background Pattern */}
-     
+      {/* Background with hero-inspired effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none [mask-image:linear-gradient(to_top,black_70%,transparent_100%)]">
+        {/* Gradient Orbs */}
+        <div className="absolute top-1/4 right-[15%] w-[40%] aspect-square">
+          <div className="absolute inset-0 bg-gradient-to-bl from-[#00A3E0]/40 via-[#4DB6AC]/20 to-transparent rounded-full blur-2xl animate-pulse-gradient transition-all duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-bl from-[#00A3E0]/20 to-transparent rounded-full blur-xl animate-pulse-gradient delay-500" />
+        </div>
+        <div className="absolute bottom-[-10%] left-[-5%] w-[45%] aspect-square">
+          <div className="absolute inset-0 bg-gradient-to-tr from-[#6D28D9]/45 via-[#0A1D37]/25 to-transparent rounded-full blur-2xl animate-pulse-gradient delay-1000 transition-all duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-[#6D28D9]/20 to-transparent rounded-full blur-xl animate-pulse-gradient delay-1500" />
+        </div>
+
+        {/* Background Hexagonal Grid with scroll-based opacity */}
+        <div ref={gridRef} className="absolute inset-0">
+          <svg className="w-full h-full" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <pattern id="hex-grid-bg" width="40" height="69.28" patternUnits="userSpaceOnUse">
+                <path d="M20 0 L40 11.55 L40 46.19 L20 57.74 L0 46.19 L0 11.55 Z" fill="none" stroke="#00A3E0" strokeWidth="1" opacity="0.5">
+                  <animate attributeName="opacity" values="0.15;0.3;0.15" dur="4s" repeatCount="indefinite" begin="0s" />
+                </path>
+                <path d="M20 0 L40 11.55 M20 57.74 L40 46.19 M0 11.55 L20 23.1 M0 46.19 L20 34.64" fill="none" stroke="#4DB6AC" strokeWidth="1" opacity="0.5">
+                  <animate attributeName="stroke-dashoffset" from="0" to="10" dur="2s" repeatCount="indefinite" />
+                </path>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#hex-grid-bg)" />
+          </svg>
+        </div>
+
+
+        {/* Noise Texture Overlay */}
+        <div className="absolute inset-0 bg-[url('https://example.com/noise-texture.png')] opacity-5 bg-repeat bg-[size:200px]" />
+
+        {/* Gradient Overlay for Readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-white/60 to-white/5" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-4xl mx-auto">
-          <div className="border border-gray-200 rounded-2xl overflow-hidden shadow-xl ">
-            <div className=' bg-[linear-gradient(rgba(59,130,246,0.2)_1px,transparent_1px),linear-gradient(to_right,rgba(59,130,246,0.2)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,)]'> 
-            <div className="p-8 md:p-12">
+          <div className="border border-gray-200 rounded-2xl overflow-hidden shadow-xl bg-white/90 backdrop-blur-sm relative">
+            {/* Subtle Hex Pattern Inside Component */}
+            <div className="absolute inset-0 pointer-events-none">
+              <svg className="w-full h-full" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <pattern id="hex-grid-inner" width="20" height="34.64" patternUnits="userSpaceOnUse">
+                    <path d="M10 0 L20 5.77 L20 23.09 L10 28.85 L0 23.09 L0 5.77 Z" fill="none" stroke="#00A3E0" strokeWidth="0.5" opacity="0.05">
+                      <animate attributeName="opacity" values="0.05;0.1;0.05" dur="6s" repeatCount="indefinite" begin="0s" />
+                    </path>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#hex-grid-inner)" />
+              </svg>
+            </div>
+
+            <div className="p-8 md:p-12 relative">
               {/* Content */}
-          
               <div className="text-center mb-12">
                 <span className="inline-block text-secondary text-sm font-medium px-4 py-2 bg-secondary/5 rounded-full mb-4">
                   Ready to Transform Your Business?
@@ -65,22 +141,90 @@ const CTASection = () => {
               </div>
               
               {/* Role-specific CTAs */}
-            
-                    <button
-                      className={`w-full px-6 py-3 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 bg-secondary text-white hover:bg-secondary/90`}
-                      aria-label={`Get Started`}
-                      >
-                      Get Started
-                    </button>
-                 
+              <div className="flex justify-center">
+                <button
+                  className="w-full max-w-xs px-6 py-3 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 bg-secondary text-white hover:bg-secondary/90 text-lg font-medium"
+                  aria-label="Get Started"
+                >
+                  Get Started
+                </button>
+              </div>
             </div>
           </div>
         </div>
-        </div>
       </div>
-      
     </section>
   );
 };
 
-export default CTASection; 
+export default CTASection;
+
+<style jsx global>{`
+  /* Gradient Pulse Animation (from hero section) */
+  @keyframes pulse-gradient {
+    0% {
+      transform: scale(1);
+      opacity: 0.8;
+      filter: hue-rotate(0deg);
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 1;
+      filter: hue-rotate(20deg);
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0.8;
+      filter: hue-rotate(0deg);
+    }
+  }
+  .animate-pulse-gradient {
+    animation: pulse-gradient 8s ease-in-out infinite;
+    will-change: transform, opacity, filter;
+  }
+
+  /* Stream Flow Animation */
+  @keyframes stream-flow {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  .animate-stream-flow {
+    animation: stream-flow 15s linear infinite;
+  }
+
+  /* Stream Pulse Animation */
+  @keyframes stream-pulse {
+    0% { transform: scaleX(1); }
+    50% { transform: scaleX(1.15); }
+    100% { transform: scaleX(1); }
+  }
+  .animate-stream-pulse {
+    animation: stream-pulse 2s ease-in-out infinite;
+  }
+
+  /* Energy Pulse Animation */
+  @keyframes energy-pulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(2); opacity: 0; }
+    100% { transform: scale(1); opacity: 0.5; }
+  }
+  .animate-energy-pulse {
+    animation: energy-pulse 6s ease-in-out infinite;
+  }
+
+  /* Ensure the SVG scales correctly */
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .md:grid-cols-3 { grid-template-columns: 1fr; }
+    .max-w-xs { max-width: 100%; }
+    .text-3xl { font-size: 2xl; }
+    .text-4xl { font-size: 2.5rem; }
+    .w-[40%] { width: 30% !important; }
+    .w-[45%] { width: 35% !important; }
+  }
+`}</style>

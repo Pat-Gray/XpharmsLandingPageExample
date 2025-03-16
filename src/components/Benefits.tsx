@@ -1,11 +1,11 @@
 import React from 'react';
 import { 
   Network, 
+  CheckCircle2, 
   FlaskConical, 
   Wallet, 
   Award,
   Server,
-  CheckCircle2,
   Leaf,
   ShoppingCart,
 } from 'lucide-react';
@@ -13,36 +13,116 @@ import {
 const benefits = [
   {
     icon: Network,
-    title: 'Smarter, Direct Connections',
-    subtitle: 'Bypass Middlemen and Connect Directly',
-    description: 'Xpharms Xchange eliminates unnecessary intermediaries, reducing costs and accelerating deals. Our strict KYC/AML verification and automated compliance checks ensure only licensed participants trade, creating a secure and efficient marketplace.',
+    title: 'Direct Connections for Faster Deals',
+    subtitle: 'Trade Faster with Verified Cultivators, Buyers, and Processors',
+    description: 'Xpharms Xchange connects you directly with verified cultivators, buyers, and logistic operators—eliminating middlemen for faster, more efficient deals. Our strict KYC/AML checks ensure a secure, licensed-only marketplace.',
     graphic: (
-      <div className="relative w-full h-full">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="grid grid-cols-2 gap-4 w-full max-w-xs">
-            {[...Array(4)].map((_, i) => (
-              <div key={i} className="bg-secondary/5 rounded-lg p-4 flex items-center justify-center">
-                <Network className="w-6 h-6 text-secondary/40" />
+      <div className="flex-1 bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-gray-100/50 overflow-hidden">
+        <div className="bg-secondary/5 backdrop-blur-sm p-4 border-b border-gray-100/50">
+          <div className="flex justify-between items-center">
+            <div>
+              <h3 className="text-text-primary font-semibold">Direct Connections</h3>
+              <p className="text-sm text-text-secondary">Real-time Network</p>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-sm text-text-secondary">Live</span>
+            </div>
+          </div>
+        </div>
+        <div className="p-6">
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            {[
+              { label: 'Active Connections', value: '1,500', trend: '+15%' },
+              { label: 'Verified Users', value: '2,300', trend: '+8%' },
+            ].map((stat, index) => (
+              <div key={index} className="bg-white/50 backdrop-blur-sm p-4 rounded-lg border border-gray-100/50 hover:border-secondary/20 transition-colors">
+                <p className="text-sm text-text-secondary mb-1">{stat.label}</p>
+                <div className="flex items-baseline justify-between">
+                  <span className="text-xl font-semibold text-text-primary">{stat.value}</span>
+                  <span className="text-sm text-green-600">{stat.trend}</span>
+                </div>
               </div>
             ))}
           </div>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent" />
+      </div>
+    )
+  },
+  {
+    icon: CheckCircle2,
+    title: 'Secure, Fraud-Proof Transactions',
+    subtitle: 'Secure, Automated Payments with Smart Contracts',
+    description: 'Xpharms Xchange secures every transaction with smart contracts, ensuring fraud-proof payments. Funds are held in escrow and released automatically upon agreed milestones, giving all parties real-time visibility and trust.',
+    graphic: (
+      <div className="flex-1 bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-gray-100/50 overflow-hidden">
+        <div className="bg-secondary/5 backdrop-blur-sm p-4 border-b border-gray-100/50">
+          <div className="flex justify-between items-center">
+            <div>
+              <h3 className="text-text-primary font-semibold">Transaction Security</h3>
+              <p className="text-sm text-text-secondary">Smart Contract Status</p>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-sm text-text-secondary">Live</span>
+            </div>
+          </div>
+        </div>
+        <div className="p-6">
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            {[
+              { label: 'Secure Transactions', value: '99.9%', trend: '+0.2%' },
+              { label: 'Escrow Funds', value: '$5.2M', trend: '+10%' },
+            ].map((stat, index) => (
+              <div key={index} className="bg-white/50 backdrop-blur-sm p-4 rounded-lg border border-gray-100/50 hover:border-secondary/20 transition-colors">
+                <p className="text-sm text-text-secondary mb-1">{stat.label}</p>
+                <div className="flex items-baseline justify-between">
+                  <span className="text-xl font-semibold text-text-primary">{stat.value}</span>
+                  <span className="text-sm text-green-600">{stat.trend}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     )
   },
   {
     icon: FlaskConical,
-    title: 'Standardized Lab Testing',
-    subtitle: 'Consistent, Highest-Standard COAs Guarantee Product Quality',
-    description: 'Funds are securely held in a smart contract controlled escrow account and released automatically based on agreed milestones. This protects both buyers and sellers, reducing risks, ensuring timely payments, and enhancing trust in every transaction.',
+    title: 'Guaranteed Quality',
+    subtitle: 'Certified Quality with Standardized COAs',
+    description: 'Beyond quality assurance, our COA system empowers users with detailed insights into potency, terpenes, and contaminants, meeting strict regulatory standards. Cultivators can showcase their excellence, buyers can select products with precision—making compliance a breeze while fostering long-term partnerships.',
     graphic: (
-      <div className="relative w-full h-full">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="grid grid-cols-3 gap-2 w-full max-w-xs">
-            {[...Array(9)].map((_, i) => (
-              <div key={i} className="aspect-square bg-secondary/5 rounded-lg flex items-center justify-center">
-                <FlaskConical className="w-6 h-6 text-secondary/30" />
+      <div className="flex-1 bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-gray-100/50 overflow-hidden">
+        <div className="bg-secondary/5 backdrop-blur-sm p-4 border-b border-gray-100/50">
+          <div className="flex justify-between items-center">
+            <div>
+              <h3 className="text-text-primary font-semibold">Quality Assurance</h3>
+              <p className="text-sm text-text-secondary">COA Compliance</p>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-sm text-text-secondary">Live</span>
+            </div>
+          </div>
+        </div>
+        <div className="p-6">
+          <div className="space-y-3">
+            {[
+              { stage: 'Potency Testing', progress: 95 },
+              { stage: 'Contaminant Check', progress: 88 },
+            ].map((item, index) => (
+              <div key={index}>
+                <div className="flex justify-between text-sm mb-1">
+                  <span className="text-text-secondary">{item.stage}</span>
+                  <span className="text-text-secondary">{item.progress}%</span>
+                </div>
+                <div className="h-2 bg-secondary/5 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-secondary rounded-full transition-all duration-1000 ease-out"
+                    style={{ width: `${item.progress}%` }}
+                  ></div>
+                </div>
               </div>
             ))}
           </div>
@@ -52,16 +132,35 @@ const benefits = [
   },
   {
     icon: Wallet,
-    title: 'Seamless & Cost-Efficient Payments',
-    subtitle: 'Leverage stablecoin payments',
-    description: 'Save thousands in international transfers fees or get paid instantly.',
+    title: 'Cost-Saving Payments',
+    subtitle: 'Cut Fees with Stablecoin Payments',
+    description: 'Xpharms Xchange uses stablecoin payments to eliminate costly international transfer fees. Enjoy fast, low-cost transactions, and carbon-neutral payments.',
     graphic: (
-      <div className="relative w-full h-full">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="space-y-4">
-            {['$', '₿', '⬡'].map((symbol, i) => (
-              <div key={i} className="bg-secondary/5 rounded-full p-4 text-2xl text-secondary/40 text-center">
-                {symbol}
+      <div className="flex-1 bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-gray-100/50 overflow-hidden">
+        <div className="bg-secondary/5 backdrop-blur-sm p-4 border-b border-gray-100/50">
+          <div className="flex justify-between items-center">
+            <div>
+              <h3 className="text-text-primary font-semibold">Payment Efficiency</h3>
+              <p className="text-sm text-text-secondary">Stablecoin Transactions</p>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-sm text-text-secondary">Live</span>
+            </div>
+          </div>
+        </div>
+        <div className="p-6">
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            {[
+              { label: 'Fee Reduction', value: '90%', trend: '-5%' },
+              { label: 'Transactions/Day', value: '1,800', trend: '+20%' },
+            ].map((stat, index) => (
+              <div key={index} className="bg-white/50 backdrop-blur-sm p-4 rounded-lg border border-gray-100/50 hover:border-secondary/20 transition-colors">
+                <p className="text-sm text-text-secondary mb-1">{stat.label}</p>
+                <div className="flex items-baseline justify-between">
+                  <span className="text-xl font-semibold text-text-primary">{stat.value}</span>
+                  <span className="text-sm text-green-600">{stat.trend}</span>
+                </div>
               </div>
             ))}
           </div>
@@ -71,16 +170,40 @@ const benefits = [
   },
   {
     icon: Award,
-    title: 'Real World Tokenization',
-    subtitle: 'Immutable Record and Tracking',
+    title: 'Immutable Record and Tracking',
+    subtitle: 'Real World Tokenization',
     description: 'Xpharms Xchange transforms physical cannabis batches into digital tokens, ensuring immutable records, seamless traceability, and automated smart contract execution. This eliminates manual tracking inefficiencies & enhances supply chain transparency.',
     graphic: (
-      <div className="relative w-full h-full">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="grid grid-cols-2 gap-4 w-full max-w-xs">
-            {[...Array(4)].map((_, i) => (
-              <div key={i} className="bg-secondary/5 rounded-lg p-4 flex items-center justify-center">
-                <Award className="w-6 h-6 text-secondary/40" />
+      <div className="flex-1 bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-gray-100/50 overflow-hidden">
+        <div className="bg-secondary/5 backdrop-blur-sm p-4 border-b border-gray-100/50">
+          <div className="flex justify-between items-center">
+            <div>
+              <h3 className="text-text-primary font-semibold">Token Tracking</h3>
+              <p className="text-sm text-text-secondary">Immutable Ledger</p>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-sm text-text-secondary">Live</span>
+            </div>
+          </div>
+        </div>
+        <div className="p-6">
+          <div className="space-y-3">
+            {[
+              { stage: 'Tokenization', progress: 92 },
+              { stage: 'Traceability', progress: 85 },
+            ].map((item, index) => (
+              <div key={index}>
+                <div className="flex justify-between text-sm mb-1">
+                  <span className="text-text-secondary">{item.stage}</span>
+                  <span className="text-text-secondary">{item.progress}%</span>
+                </div>
+                <div className="h-2 bg-secondary/5 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-secondary rounded-full transition-all duration-1000 ease-out"
+                    style={{ width: `${item.progress}%` }}
+                  ></div>
+                </div>
               </div>
             ))}
           </div>
@@ -91,22 +214,41 @@ const benefits = [
   {
     icon: Server,
     title: 'Reduce Negotiation Times',
-    subtitle: 'Streamlined Legal Processes',
-    description: 'The platform is custom built to facilitate cannabis trade and streamline the process. The platform takes a unique user-friendly approach to help cultivators and buyers reach negotiation quickly and buy securely.',
+    subtitle: 'Streamline the process',
+    description: 'Xpharms Xchange offers a uniquely intuitive interface for negotiation and contract management, designed with users in mind. Simplify deal-making with drag-and-drop terms, real-time collaboration tools, and automated contract updates—empowering cultivators to set fair prices, buyers to customize orders, and processors to align on delivery schedules with ease.',
     graphic: (
-      <div className="relative w-full h-full">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="grid grid-cols-2 gap-4 w-full max-w-xs">
-            {[...Array(4)].map((_, i) => (
-              <div key={i} className="bg-secondary/5 rounded-lg p-4 flex items-center justify-center">
-                <Server className="w-6 h-6 text-secondary/40" />
+      <div className="flex-1 bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-gray-100/50 overflow-hidden">
+        <div className="bg-secondary/5 backdrop-blur-sm p-4 border-b border-gray-100/50">
+          <div className="flex justify-between items-center">
+            <div>
+              <h3 className="text-text-primary font-semibold">Negotiation Efficiency</h3>
+              <p className="text-sm text-text-secondary">Contract Management</p>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-sm text-text-secondary">Live</span>
+            </div>
+          </div>
+        </div>
+        <div className="p-6">
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            {[
+              { label: 'Negotiations/Day', value: '450', trend: '+18%' },
+              { label: 'Contracts Signed', value: '320', trend: '+12%' },
+            ].map((stat, index) => (
+              <div key={index} className="bg-white/50 backdrop-blur-sm p-4 rounded-lg border border-gray-100/50 hover:border-secondary/20 transition-colors">
+                <p className="text-sm text-text-secondary mb-1">{stat.label}</p>
+                <div className="flex items-baseline justify-between">
+                  <span className="text-xl font-semibold text-text-primary">{stat.value}</span>
+                  <span className="text-sm text-green-600">{stat.trend}</span>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </div>
     )
-  }
+  },
 ];
 
 const Benefits = () => {
@@ -147,7 +289,7 @@ const Benefits = () => {
               </div>
 
               {/* Graphic Section (30%) */}
-              <div className="w-full lg:w-[30%] aspect-square bg-white rounded-2xl shadow-sm border border-gray-100">
+              <div className="w-full lg:w-[30%] aspect-square">
                 {benefit.graphic}
               </div>
             </div>
@@ -178,3 +320,27 @@ const Benefits = () => {
 };
 
 export default Benefits;
+
+<style jsx global>{`
+  /* Pulse Animation for Live Indicator */
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.6; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .animate-pulse {
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  /* Transition for Progress Bars */
+  .transition-all {
+    transition-property: width;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 1024px) {
+    .w-[70%] { width: 100% !important; }
+    .w-[30%] { width: 100% !important; }
+    .aspect-square { aspect-ratio: 1 / 1; }
+  }
+`}</style>
