@@ -11,7 +11,7 @@ import Benefits from './components/Benefits';
 import FAQSection from './components/FAQSection';
 import BackgroundEffects from './components/BackgroundEffects';
 import BackgroundEffectsBottom from './components/BackgroundEffectsBottom';
-
+import ProductListing from './components/ProductListing';
 
 const App = () => {
   // You can control the background intensity here
@@ -23,21 +23,21 @@ const App = () => {
         
       
 
-        <Navigation />
+        {/* <Navigation />
         <main className="flex-grow">
           <Hero />
           <BackgroundEffectsBottom>
-          <HederaPartnership />
-            
-          <Benefits />
+          <HederaPartnership /> */}
+            <ProductListing />
+          {/* <Benefits /> */}
     
 
-          <CTASection />
+          {/* <CTASection />
           <FAQSection />
           <ContactUs />
           </BackgroundEffectsBottom>
         </main>
-        <Footer />
+        <Footer /> */}
         
       </div>
   
